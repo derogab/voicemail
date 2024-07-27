@@ -10,8 +10,8 @@
 </p>
 
 ### Info
-Use the ability to receive an email to a Cloudflare Worker to analyze whether that email contains a voicemail attachment.
-If it does, listen to it with Whisper AI and send a summary to Telegram.
+Use the [ability to receive an email to a Cloudflare Worker](https://developers.cloudflare.com/email-routing/email-workers/) to analyze whether that email contains a voicemail attachment.
+If it does, listen to it with [Whisper AI](https://developers.cloudflare.com/workers-ai/models/whisper/) and send a summary to Telegram.
 
 Note: your phone operator must give you the possibility to forward voicemail messages via email.
 
@@ -32,6 +32,15 @@ You need to create a personal telegram bot and connect it to your worker.
 2. Go to _Cloudflare > Workers & Pages > Your Worker > Settings > Variables > Add Encrypted Environment Variables_
    - `TELEGRAM_BOT_API_KEY`: set the API KEY of the bot.
    - `TELEGRAM_CHAT_ID`: set your Chat ID (You can find out easily with [My ID Bot](https://t.me/my_id_bot)).
+
+### Activate Voicemail
+1. Connect your website to Cloudflare.
+2. Add _Email Routing_ to your Cloudflare website.
+3. Create a routing rule on _Cloudflare > Email > Routing rules_.
+   - Custom address: `voicemail@example.com`
+   - Action: `Send to a Worker`
+   - Destination: `voicemail`
+4. Setup your phone operator to submit voicemail messages to `voicemail@example.com`.
 
 
 ### Tip
