@@ -32,7 +32,11 @@ export default {
         // Get the caller.
         const llamaResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", {
           messages: [
-            { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from the voicemail email. You MUST reply with only the caller number." },
+            { role: "system", content: "You are an assistant with only one task." },
+            { role: "system", content: "The task: find the caller's phone number from a voicemail email." },
+            { role: "system", content: "You will receive the voicemail as unique input." },
+            { role: "system", content: "Be careful not to confuse the caller's phone number with the number of the called party." },
+            { role: "system", content: "You MUST reply with only the caller number." },
             { role: "user", content: emailSubject },
           ],
         });
