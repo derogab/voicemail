@@ -28,8 +28,9 @@ export default {
         });
 
         // Generate message.
+        const caller = emailSubject?.split(':')[2]?.trim() || 'Unknown';
         const transcribedAudio = response.text ? response.text : '...';
-        const msg = '☎️ ' + emailSubject?.split(':')[2]?.trim() + '\n'
+        const msg = '☎️ ' + caller + '\n'
                   + '📅 ' + moment().format('YYYY-MM-DD, hh:mm') + '\n'
                   + '💬 `' + transcribedAudio + '`';
 
