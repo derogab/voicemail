@@ -30,6 +30,7 @@ export default {
         const transcribedAudio = whisperResponse.text ? whisperResponse.text : '...';
 
         // Get the caller.
+        const inputEmailData = emailSubject + '\n\n' + emailObj.text;
         const llamaResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", {
           messages: [
             { role: "system", content: "You are an assistant with only one task." },
@@ -37,10 +38,13 @@ export default {
             { role: "system", content: "You will receive the voicemail as unique input." },
             { role: "system", content: "Be careful not to confuse the caller's phone number with the called one." },
             { role: "system", content: "You MUST reply with only the caller number." },
-            { role: "user", content: emailSubject + '\n\n' + emailObj.text },
+            { role: "user", content: inputEmailData },
           ],
         });
         const caller = llamaResponse.response;
+
+        // Log the input.
+        console.log('Input Email: ' + inputEmailData);
 
         // Generate message.
         const msg = '☎️ ' + caller + '\n'
