@@ -23,15 +23,20 @@ export default {
         // Get audio file.
         const audioFile = new Uint8Array(attachment.content);
         // Convert audio in text with AI.
-        const response = await env.AI.run("@cf/openai/whisper", {
+        const whisperResponse = await env.AI.run("@cf/openai/whisper", {
           audio: [...audioFile],
         });
+        // Get the transcription.
+        const transcribedAudio = whisperResponse.text ? whisperResponse.text : '...';
 
         // Get the caller.
-        const caller = emailSubject?.split(':')[2]?.trim() || 'Unknown';
-
-        // Get the transcription.
-        const transcribedAudio = response.text ? response.text : '...';
+        const llamaResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", {
+          messages: [
+            { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from the voicemail email. You MUST reply with only the caller number." },
+            { role: "user", content: emailSubject },
+          ],
+        });
+        const caller = llamaResponse.response;
 
         // Generate message.
         const msg = '☎️ ' + caller + '\n'
