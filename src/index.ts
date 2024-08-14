@@ -37,8 +37,7 @@ export default {
             { role: "system", content: "You will receive the voicemail as unique input." },
             { role: "system", content: "Be careful not to confuse the caller's phone number with the called one." },
             { role: "system", content: "You MUST reply with only the caller number." },
-            { role: "user", content: emailSubject },
-            { role: "user", content: emailObj.text },
+            { role: "user", content: emailSubject + '\n\n' + emailObj.text },
           ],
         });
         const caller = llamaResponse.response;
