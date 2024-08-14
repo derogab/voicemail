@@ -38,6 +38,7 @@ export default {
             { role: "system", content: "Be careful not to confuse the caller's phone number with the called one." },
             { role: "system", content: "You MUST reply with only the caller number." },
             { role: "user", content: emailSubject },
+            { role: "user", content: emailObj.text },
           ],
         });
         const caller = llamaResponse.response;
