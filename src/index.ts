@@ -27,9 +27,13 @@ export default {
           audio: [...audioFile],
         });
 
-        // Generate message.
+        // Get the caller.
         const caller = emailSubject?.split(':')[2]?.trim() || 'Unknown';
+
+        // Get the transcription.
         const transcribedAudio = response.text ? response.text : '...';
+
+        // Generate message.
         const msg = '☎️ ' + caller + '\n'
                   + '📅 ' + moment().format('YYYY-MM-DD, hh:mm') + '\n'
                   + '💬 `' + transcribedAudio + '`';
