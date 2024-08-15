@@ -1,15 +1,21 @@
+// Dependencies.
 import PostalMime from 'postal-mime';
 import { Bot, InputFile } from 'grammy';
 import moment from 'moment';
 
-export interface Env {
-  AI: Ai;
-  TELEGRAM_BOT_API_KEY: string;
-  TELEGRAM_CHAT_ID: string;
-  TZ: string;
-}
+import { Env } from './env';
+import { llm } from './llm';
 
+// Main.
 export default {
+
+  /**
+   * Main function: email.
+   *
+   * @param message the email message
+   * @param env the environment
+   * @param ctx the execution context
+   */
   async email(message: ForwardableEmailMessage, env: Env, ctx: ExecutionContext) {
     // Extract the email data.
     const emailSubject = message.headers.get('subject');
@@ -32,18 +38,15 @@ export default {
         // Create the email data.
         const mailData = 'Subject: ' + emailSubject + ' - Text: ' + emailObj.text?.replaceAll('\n', ' ').trim();
         // Use LLM to extract the caller's phone number from the voicemail.
-        const llamaResponse = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
-          messages: [
-            { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from a voicemail email." },
-            { role: "system", content: "You will receive the voicemail email as input." },
-            { role: "system", content: "You have to be careful to not confuse the caller's phone number with the called one." },
-            { role: "system", content: "Important: you have to reply with only the caller number." },
-            { role: "user", content: 'Input: ' + mailData },
-          ],
-        });
+        const llmResponse = await llm([
+          { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from a voicemail email." },
+          { role: "system", content: "You will receive the voicemail email as input." },
+          { role: "system", content: "You have to be careful to not confuse the caller's phone number with the called one." },
+          { role: "system", content: "Important: you have to reply with only the caller number." },
+          { role: "user", content: 'Input: ' + mailData },
+        ], env);
         // Extract the caller.
-        const llamaResponseNumbers = llamaResponse.response.match(/\d+/g);
-        const caller = llamaResponseNumbers ? llamaResponseNumbers[0] : 'Unknown';
+        const caller = llmResponse.content;
 
         // Generate message.
         const msg = '☎️ ' + caller + '\n'
