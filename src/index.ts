@@ -29,22 +29,20 @@ export default {
         // Get the transcription.
         const transcribedAudio = whisperResponse.text ? whisperResponse.text : '...';
 
-        // Get the caller.
-        const inputEmailData = emailSubject + '\n\n' + emailObj.text;
+        // Create the email data.
+        const mailData = 'Subject: ' + emailSubject + ' - Text: ' + emailObj.text?.replaceAll('\n', ' ').trim();
+        // Use LLM to extract the caller's phone number from the voicemail.
         const llamaResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", {
           messages: [
-            { role: "system", content: "You are an assistant with only one task." },
-            { role: "system", content: "The task: find the caller's phone number from a voicemail email." },
-            { role: "system", content: "You will receive the voicemail as unique input." },
-            { role: "system", content: "Be careful not to confuse the caller's phone number with the called one." },
-            { role: "system", content: "You MUST reply with only the caller number." },
-            { role: "user", content: inputEmailData },
+            { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from a voicemail email." },
+            { role: "system", content: "You will receive the voicemail email as unique input." },
+            { role: "system", content: "Important: be careful not to confuse the caller's phone number with the called one." },
+            { role: "system", content: "You MUST reply with ONLY the caller number." },
+            { role: "user", content: 'Input: ' + mailData },
           ],
         });
+        // Get the caller.
         const caller = llamaResponse.response;
-
-        // Log the input.
-        console.log('Input Email: ' + inputEmailData);
 
         // Generate message.
         const msg = '☎️ ' + caller + '\n'
