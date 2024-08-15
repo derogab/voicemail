@@ -1,7 +1,7 @@
 // Dependencies.
 import PostalMime from 'postal-mime';
 import { Bot, InputFile } from 'grammy';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { Env } from './env';
 import { llm } from './llm';
@@ -50,7 +50,7 @@ export default {
 
         // Generate message.
         const msg = '☎️ ' + caller + '\n'
-                  + '📅 ' + moment().format('YYYY-MM-DD, hh:mm') + '\n'
+                  + '📅 ' + moment().tz(env.TZ ? env.TZ : 'UTC').format('YYYY-MM-DD, HH:mm') + '\n'
                   + '💬 `' + transcribedAudio + '`';
 
         // Send the summary to the user.
