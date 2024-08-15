@@ -32,7 +32,7 @@ export default {
         // Create the email data.
         const mailData = 'Subject: ' + emailSubject + ' - Text: ' + emailObj.text?.replaceAll('\n', ' ').trim();
         // Use LLM to extract the caller's phone number from the voicemail.
-        const llamaResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", {
+        const llamaResponse = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
           messages: [
             { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from a voicemail email." },
             { role: "system", content: "You will receive the voicemail email as input." },
