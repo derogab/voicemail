@@ -42,7 +42,7 @@ export default {
           { role: "system", content: "You are an assistant with only one task: finding the caller's phone number from a voicemail email." },
           { role: "system", content: "You will receive the voicemail email as input." },
           { role: "system", content: "You have to be careful to not confuse the caller's phone number with the called one." },
-          { role: "system", content: "Important: you have to reply with only the caller number." },
+          { role: "system", content: "Important: you have to reply with only the caller number (with the name in parentheses, only if available)." },
           { role: "user", content: 'Input: ' + mailData },
         ], env);
         // Extract the caller.
