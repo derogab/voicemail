@@ -50,7 +50,7 @@ export default {
 
         // Generate message.
         const msg = '☎️ ' + caller + '\n'
-                  + '📅 ' + moment().tz(env.TZ ? env.TZ : 'UTC').format('YYYY-MM-DD, HH:mm (hh:mm a)') + '\n\n'
+                  + '📅 ' + moment().tz(env.TZ ? env.TZ : 'UTC').format('YYYY-MM-DD HH:mm') + '\n\n'
                   + '💬 `' + transcribedAudio + '`';
 
         // Send the summary to the user.
