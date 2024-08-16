@@ -30,8 +30,10 @@ Inside this repo, run the command `npm run deploy` and follow the steps to conne
 You need to create a personal telegram bot and connect it to your worker.
 1. First of all you need to create a bot with [BotFather](https://t.me/BotFather).
 2. Go to _Cloudflare > Workers & Pages > Your Worker > Settings > Variables > Add Encrypted Environment Variables_
-   - `TELEGRAM_BOT_API_KEY`: set the API KEY of the bot.
-   - `TELEGRAM_CHAT_ID`: set your Chat ID (You can find out easily with [My ID Bot](https://t.me/my_id_bot)).
+   - `OPENAI_API_KEY`: (optional) set the OpenAI API KEY. If available GPT will be used, otherwise Llama3.
+   - `TELEGRAM_BOT_API_KEY`: (mandatory) set the API KEY of the telegram bot.
+   - `TELEGRAM_CHAT_ID`: (mandatory) set your Chat ID (You can find out easily with [My ID Bot](https://t.me/my_id_bot)).
+   - `TZ`: (optional) set the correct time zone (e.g. Europe/Rome, Europe/London, ...)
 
 ### Activate Voicemail
 1. Connect your website to Cloudflare.
