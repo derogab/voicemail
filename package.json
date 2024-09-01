@@ -16,7 +16,7 @@
     "wrangler": "^3.60.3"
   },
   "dependencies": {
-    "grammy": "1.27.0",
+    "grammy": "1.29.0",
     "moment": "2.30.1",
     "moment-timezone": "0.5.45",
     "openai": "4.57.0",
