@@ -107,3 +107,9 @@ binding = "AI"
 # [[vectorize]]
 # binding = "MY_INDEX"
 # index_name = "my-index"
+
+# Workers Logs
+# Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/
+# Configuration: https://developers.cloudflare.com/workers/observability/logs/workers-logs/#enable-workers-logs
+[observability]
+enabled = true
