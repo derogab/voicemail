@@ -4,6 +4,12 @@ main = "src/index.ts"
 compatibility_date = "2024-07-22"
 compatibility_flags = ["nodejs_compat"]
 
+# Worker Domain
+# Enables use of *.workers.dev subdomain to test and deploy your Worker. 
+# If you have a Worker that is only for scheduled or email events, you can set this to false. Defaults to true.
+# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#inheritable-keys
+workers_dev = false
+
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
 # rather than the end user may result in better performance.
