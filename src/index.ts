@@ -65,12 +65,21 @@ export default {
 
       // Check if the attachment is a WAV file.
       if (attachment.mimeType === 'audio/wav' || attachment.mimeType === 'audio/x-wav') {
-        // Get audio file.
-        const audioFile = new Uint8Array(attachment.content);
-        // Generate recap from audio attachment and text.
-        const msg = await generateRecapFromAudioAndText(env, emailSubject, emailObj, audioFile);
-        // Send the summary to the user.
-        await sendRecapToTelegram(env.TELEGRAM_BOT_API_KEY, env.TELEGRAM_CHAT_ID, audioFile, msg);        
+        // Try to extract, generate and send.
+        try {
+          // Get audio file.
+          const audioFile = new Uint8Array(attachment.content);
+          // Generate recap from audio attachment and text.
+          const msg = await generateRecapFromAudioAndText(env, emailSubject, emailObj, audioFile);
+          // Send the summary to the user.
+          await sendRecapToTelegram(env.TELEGRAM_BOT_API_KEY, env.TELEGRAM_CHAT_ID, audioFile, msg);
+          // Log successful.
+          console.log('The voicemail was successfully delivered.');
+        
+        } catch (error) {
+          // Log error.
+          console.error('An error occurred during extraction, generation or delivery.', error);
+        }
       }
     }
   }
