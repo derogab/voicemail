@@ -4,4 +4,5 @@ export interface Env {
   TELEGRAM_CHAT_ID: string;
   TZ: string;
   OPENAI_API_KEY: string;
+  OPENAI_BASE_URL: string | undefined;
 }

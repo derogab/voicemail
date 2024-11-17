@@ -27,7 +27,7 @@ export async function llm(messages: MessageParam[], env: Env) : Promise<MessageP
     // Try to make a call to the OpenAI API.
     try {
       // Initialize OpenAI.
-      const openai = new OpenAI({ apiKey: env.OPENAI_API_KEY });
+      const openai = new OpenAI({ apiKey: env.OPENAI_API_KEY, baseURL: env.OPENAI_BASE_URL });
       // Call the OpenAI API.
       const chatCompletion = await openai.chat.completions.create({ model: 'gpt-4o-mini', messages: messages });
       const response = chatCompletion.choices[0].message;
