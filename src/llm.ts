@@ -15,7 +15,7 @@ export type MessageParam = OpenAI.ChatCompletionMessageParam | SimpleMessagePara
  * Make a call to the LLM.
  *
  * Use the OpenAI API to chat with a GPT model, if the OpenAI API key is available.
- * Otherwise, use a text generation model by Cloudflare.
+ * If OpenAI API key is not available or OpenAI API call fails, use a text generation model by Cloudflare.
  *
  * @param messages the messages to be sent to the LLM
  * @param env the environment
