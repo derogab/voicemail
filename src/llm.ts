@@ -40,8 +40,8 @@ export async function llm(messages: MessageParam[], env: Env) : Promise<MessageP
     }
   }
 
-  // Use the Llama3.1-8b-instruct model by Cloudflare.
-  const llamaResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', { messages: messages });
+  // Use the Llama-4-scout-17b-16e-instruct model by Cloudflare.
+  const llamaResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', { messages: messages });
   // Return the response.
   return { role: "assistant", content: llamaResponse.response };
 }
