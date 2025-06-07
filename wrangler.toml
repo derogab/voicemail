@@ -24,6 +24,7 @@ workers_dev = false
 # - https://developers.cloudflare.com/workers/configuration/secrets/
 [vars]
 # MY_VARIABLE = "production_value"
+AI_GATEWAY = "voicemail"
 TZ = "Europe/Rome"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network

@@ -41,7 +41,7 @@ export async function llm(messages: MessageParam[], env: Env) : Promise<MessageP
   }
 
   // Use the Llama-4-scout-17b-16e-instruct model by Cloudflare.
-  const llamaResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', { messages: messages });
+  const llamaResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', { messages: messages }, { gateway: { id: env.AI_GATEWAY } });
   // Return the response.
   return { role: "assistant", content: llamaResponse.response };
 }

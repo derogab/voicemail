@@ -1,5 +1,6 @@
 export interface Env {
   AI: Ai;
+  AI_GATEWAY: string;
   TELEGRAM_BOT_API_KEY: string;
   TELEGRAM_CHAT_ID: string;
   TZ: string;
