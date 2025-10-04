@@ -8,6 +8,7 @@ on:
       - 'src/**'
       - 'package.json'
       - 'wrangler.toml'
+  workflow_call:
 
 env:
   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
