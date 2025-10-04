@@ -8,7 +8,7 @@ on:
       - 'src/**'
       - 'package.json'
       - 'wrangler.toml'
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   deploy:
