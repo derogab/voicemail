@@ -20,6 +20,6 @@
     "moment": "2.30.1",
     "moment-timezone": "0.6.0",
     "openai": "5.0.2",
-    "postal-mime": "2.3.2"
+    "postal-mime": "2.4.6"
   }
 }
