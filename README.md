@@ -31,6 +31,7 @@ You need to create a personal telegram bot and connect it to your worker.
 1. First of all you need to create a bot with [BotFather](https://t.me/BotFather).
 2. Go to _Cloudflare > Workers & Pages > Your Worker > Settings > Variables > Add Encrypted Environment Variables_
    - `AI_GATEWAY`: (optional) set the Cloudflare AI gateway ID.
+   - `CF_AIG_AUTHORIZATION`: (optional) set the Cloudflare AI gateway authentication token.
    - `OPENAI_API_KEY`: (optional) set the OpenAI API KEY. If available GPT will be used, otherwise Llama4.
    - `OPENAI_BASE_URL`: (optional) set a custom OpenAI compatible BASE URL. If available it will be used, otherwise the openai default one.
    - `TELEGRAM_BOT_API_KEY`: (mandatory) set the API KEY of the telegram bot.

@@ -6,4 +6,5 @@ export interface Env {
   TZ: string;
   OPENAI_API_KEY: string;
   OPENAI_BASE_URL: string | undefined;
+  CF_AIG_AUTHORIZATION: string | undefined;
 }
